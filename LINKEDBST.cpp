@@ -99,7 +99,7 @@ bool LinkedBST::search(node *root,int data){
 				return true;
 		}
 			else{
-				cout<<data<<"was not found in the tree"<<endl;
+				cout<<data<<"wasn't found in the tree"<<endl;
 				return false;
 			}
 				
