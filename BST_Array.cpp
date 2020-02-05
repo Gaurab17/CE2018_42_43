@@ -42,6 +42,79 @@ void Array::add(int data)
 	
 
 }
+/*bool Array::search(int data,int node)
+{
+	if(node>0 && node<16)
+{
+	if(this->array[node]==data)
+{
+	return true;
+}
+	else if(data>array[node])
+{
+	node=node*2+1;
+
+}
+	else 
+{
+	node=node*2;
+}
+	search(data,node);}
+	else
+	return false;
+
+
+
+}*/
+void Array::preorder_traversal(int index)
+{
+	if(index<16){
+	cout<<this->array[index]<<endl;
+	preorder_traversal(index*2);
+	preorder_traversal(index*2+1);}
+else
+	return;
+	
+
+}
+bool Array::search(int data)
+{
+	int index=1;
+{
+	if(this->array[index]==data)
+{
+	return true;
+} 
+else{
+	while(index<16)
+{
+	if(data>array[index])
+{
+	index=index*2+1;
+
+}
+	else if(data<array[index])
+{
+	index=index*2;
+}
+	else if(data==array[index])
+{
+	return true;
+	break;
+}
+	
+}
+
+}
+return false;
+
+
+}
+
+
+
+
+}
 void Array::display()
 {
 	for(int i=0;i<16;i++)
@@ -60,4 +133,29 @@ a.add(6);
 a.add(56);
 a.add(100);
 	a.display();
+	if(a.search(1001))
+	{
+	    cout<<"Found";
+	}
+	else
+	cout<<"Not found";
+	if(a.search(80))
+	{
+	    cout<<"Found";
+	}
+	else
+	cout<<"Not found";	if(a.search(06))
+	{
+	    cout<<"Found";
+	}
+	else
+	cout<<"Not found";
+		if(a.search(560))
+	{
+	    cout<<"Found";
+	}
+	else
+	cout<<"Not found"<<endl;
+	a.preorder_traversal();
 }
+
