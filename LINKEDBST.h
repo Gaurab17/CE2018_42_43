@@ -1,26 +1,38 @@
 #ifndef LINKEDBST_h
-#define LINKEDBST_h 
-#include"BST.h"
+#define LINKEDBST_h
+#include "BinaryTree.h"
 
-class Node{
-	public:
-		int data;
-		Node* left;
-		Node* right;
-		Node();
-		Node(int);
-		~Node();	
-};
-class LinkedBST:public BinarySearchTree
+
+class node
 {
-	private:
-		Node* root;
-	
-	public:
-		LinkedBST();
-		~LinkedBST();
-		void preorder_traversal();
-		void add(int data);
-		bool search(Node *root,int data);	
+
+public:
+    int data;
+    node* left ;
+    node* right;
+    node* nullptr;
+    node();
+    node(int);
+    ~node();
+
+};
+
+
+class LinkedBST:public BinarySearchTree{
+
+    public:
+    node root;
+    LinkedBST();
+    ~LinkedBST();
+    void preordertraversal();
+    void preordertraversal(node *root);
+
+    void add(int data);
+    void add(node *root,int data);
+
+    bool search(int data);
+    bool search(node *root,int targetKey);
+   
+   void Display();
 };
 #endif
