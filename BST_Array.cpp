@@ -66,6 +66,9 @@ void Array::add(int data)
 
 
 }*/
+void Array::preorder_traversal(){
+preorder_traversal(1);
+}
 void Array::preorder_traversal(int index)
 {
 	if(index<16){
@@ -115,6 +118,30 @@ return false;
 
 
 }
+int Array::min()
+{
+
+	int index=1;
+	while(this->array[index]!=-1)
+{
+	index=index*2;
+
+	
+}
+	return this->array[index/2];
+	
+
+}
+void Array::Delete(int data)
+{
+	int index=1;
+	if(this->array[index]==data)
+{
+	delete this->array[index];
+}
+
+
+}
 void Array::display()
 {
 	for(int i=0;i<16;i++)
@@ -130,8 +157,10 @@ int main()
 	a.add(50);
 	a.add(45);
 a.add(6);
-a.add(56);
+a.add(2);
 a.add(100);
+a.add(1);
+	cout<<"Min is "<<a.min()<<endl;
 	a.display();
 	if(a.search(1001))
 	{
@@ -157,5 +186,7 @@ a.add(100);
 	else
 	cout<<"Not found"<<endl;
 	a.preorder_traversal();
+	a.Delete(8);
+	
 }
 

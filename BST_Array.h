@@ -12,5 +12,8 @@ public:
 	void display();
 	//bool search(int data,int node=1);
 	bool search(int data);
-	void preorder_traversal(int index=1);
+	void preorder_traversal(int index);
+	void preorder_traversal();
+	int min();
+	void Delete(int data);
 };
