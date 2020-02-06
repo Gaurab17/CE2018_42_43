@@ -145,12 +145,5 @@ int main(){
 	cout<<"Do you want to search again(y/n)??"<<endl;
 	cin>>character;
 	if((character=='y') || (character=='Y')) goto search;
-}<endl;
-	//return false;
-//}
-
-int main(){
-	LinkedBST A;
-	A.search(20);
-	return 0;
 }
+
