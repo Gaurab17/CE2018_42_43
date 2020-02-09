@@ -5,7 +5,7 @@ using namespace std;
 
 Array::Array()
 {
-	for(int i=0;i<16;i++)
+	for(int i=0;i<30;i++)
 	{
 		this->array[i]=-1;
 	}
@@ -19,7 +19,7 @@ void Array::add(int data)
 }
 	else
 {
-	for(int i=1;i<16;){
+	for(int i=1;i<30;){
 
 	
 	 if(this->array[i]>data)
@@ -44,7 +44,7 @@ void Array::add(int data)
 }
 /*bool Array::search(int data,int node)
 {
-	if(node>0 && node<16)
+	if(node>0 && node<30)
 {
 	if(this->array[node]==data)
 {
@@ -66,30 +66,111 @@ void Array::add(int data)
 
 
 }*/
+int Array::left_child(int index)
+{
+	if(index*2<=30 && array[index*2]!=-1)
+		{
+		return index*2;}
+	else 
+		return 0;
+}
+int Array::right_child(int index)
+{
+	if(index*2+1<=30 && array[index*2+1]!=-1)
+		{
+		return index*2+1;}
+	else 
+		return 0;
+}
 void Array::preorder_traversal(){
 preorder_traversal(1);
 }
 void Array::preorder_traversal(int index)
 {
-	if(index<16){
+	if(index>0 && array[index]!=-1){
 	cout<<this->array[index]<<endl;
-	preorder_traversal(index*2);
-	preorder_traversal(index*2+1);}
+	preorder_traversal(left_child(index));
+	preorder_traversal(right_child(index));}
 else
 	return;
 	
 
 }
-bool Array::search(int data)
+void Array:: inorder_traversal(int index)
+{
+	if(index>0 && array[index]!=-1){
+	
+	inorder_traversal(left_child(index));
+	cout<<this->array[index]<<endl;
+	inorder_traversal(right_child(index));}
+else
+	return;
+
+}
+int Array::del_lef_large_node(int index)
+{
+
+	while(this->array[index]!=-1)
+	{
+		index=index*2+1;
+	}
+	return index/2;
+	
+}
+void Array::Delete(int data)
+{
+
+	if(search(data))
+	{
+		int place=search(data);
+
+		cout<<"It's position is"<<place<<endl;
+		if(left_child(place) && right_child(place))
+		{
+			int left_sub_tree_pos=left_child(place);
+			int max_pos=del_lef_large_node(left_sub_tree_pos);
+			array[place]=array[max_pos];
+			array[max_pos]=-1;
+
+		}
+		else 
+		{
+			if(left_child(place))
+			{
+				int l_pos=left_child(place);
+				array[place]=array[l_pos];
+				array[l_pos]=-1;
+				
+
+			}
+			else if(!left_child(place) && right_child(place))
+			{
+				int r_pos=right_child(place);
+				array[place]=array[r_pos];
+				array[r_pos]=-1;
+				
+			}
+			else
+			{
+				array[place]=-1;
+			}
+
+		}
+		
+	}
+
+
+}
+int Array::search(int data)
 {
 	int index=1;
 {
 	if(this->array[index]==data)
 {
-	return true;
+	return index;
 } 
 else{
-	while(index<16)
+	while(index<30)
 {
 	if(data>array[index])
 {
@@ -102,14 +183,14 @@ else{
 }
 	else if(data==array[index])
 {
-	return true;
+	return index;
 	break;
 }
 	
 }
 
 }
-return false;
+return 0;
 
 
 }
@@ -132,19 +213,24 @@ int Array::min()
 	
 
 }
-void Array::Delete(int data)
+int Array::max()
 {
+
 	int index=1;
-	if(this->array[index]==data)
+	while(this->array[index]!=-1)
 {
-	delete this->array[index];
+	index=index*2+1;
+
+	
+}
+	return this->array[index/2];
+	
+
 }
 
-
-}
 void Array::display()
 {
-	for(int i=0;i<16;i++)
+	for(int i=0;i<30;i++)
 	{
 		cout<<i<<" "<<array[i]<<endl;
 	}
@@ -152,41 +238,68 @@ void Array::display()
 int main()
 {
 	cout<<"Hello"<<endl;
-	Array a;
-	a.add(8);
-	a.add(50);
-	a.add(45);
-a.add(6);
-a.add(2);
-a.add(100);
-a.add(1);
-	cout<<"Min is "<<a.min()<<endl;
-	a.display();
-	if(a.search(1001))
+	BST *a;
+	Array b;
+	a=&b;
+	a->add(5);
+	a->add(2);
+	a->add(3);
+	a->add(34);
+	
+	
+
+
+	
+	a->add(8);
+	a->add(50);
+	a->add(45);
+a->add(6);
+
+
+a->add(1);
+	cout<<"Min is "<<a->min()<<endl;
+	cout<<"Max is "<<a->max()<<endl;
+	
+	if(a->search(1001))
 	{
 	    cout<<"Found";
 	}
 	else
 	cout<<"Not found";
-	if(a.search(80))
+	if(a->search(80))
 	{
 	    cout<<"Found";
 	}
 	else
-	cout<<"Not found";	if(a.search(06))
+	cout<<"Not found";	if(a->search(06))
 	{
 	    cout<<"Found";
 	}
 	else
 	cout<<"Not found";
-		if(a.search(560))
+		if(a->search(560))
 	{
 	    cout<<"Found";
 	}
 	else
 	cout<<"Not found"<<endl;
-	a.preorder_traversal();
-	a.Delete(8);
+
+
+	cout<<"Preorder"<<endl;
+	a->preorder_traversal();
 	
-}
+	
+	
+	cout<<"Inorder"<<endl;
+	a->inorder_traversal();
+	cout<<" "<<endl;
+
+	b.display();
+	
+	b.Delete(5);
+	cout<<"After opt"<<endl;
+	b.display();
+	b.preorder_traversal();
+
+	return 0;}
 
