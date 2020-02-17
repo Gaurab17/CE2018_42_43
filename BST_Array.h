@@ -12,15 +12,17 @@ public:
 	void display();
 	//bool search(int data,int node=1);
 	int search(int data);
+	bool Search(int data);
 	void preorder_traversal(int index);
 	void inorder_traversal(int index);
-	void preorder_traversal();
+	void preordertraversal();
+    void inordertraversal();
 	int left_child(int index);
 	int right_child(int index);
 	int del_lef_large_node(int index);
-	int min();
+	int minimum();
 
-	int max();
-	void Delete(int data);
+	int maximum();
+	void deleteitem(int data);
 
 };

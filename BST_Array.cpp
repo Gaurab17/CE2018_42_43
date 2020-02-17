@@ -82,8 +82,8 @@ int Array::right_child(int index)
 	else 
 		return 0;
 }
-void Array::preorder_traversal(){
-preorder_traversal(1);
+void Array::preordertraversal(){
+	preorder_traversal(1);
 }
 void Array::preorder_traversal(int index)
 {
@@ -95,6 +95,10 @@ else
 	return;
 	
 
+}
+void Array::inordertraversal() 
+{
+	inorder_traversal(1);
 }
 void Array:: inorder_traversal(int index)
 {
@@ -117,7 +121,7 @@ int Array::del_lef_large_node(int index)
 	return index/2;
 	
 }
-void Array::Delete(int data)
+void Array::deleteitem(int data)
 {
 
 	if(search(data))
@@ -128,9 +132,9 @@ void Array::Delete(int data)
 		if(left_child(place) && right_child(place))
 		{
 			int left_sub_tree_pos=left_child(place);
-			int max_pos=del_lef_large_node(left_sub_tree_pos);
-			array[place]=array[max_pos];
-			array[max_pos]=-1;
+			int maximum_pos=del_lef_large_node(left_sub_tree_pos);
+			array[place]=array[maximum_pos];
+			array[maximum_pos]=-1;
 
 		}
 		else 
@@ -160,6 +164,10 @@ void Array::Delete(int data)
 	}
 
 
+}
+bool Array::Search(int data)
+{
+	search(data);
 }
 int Array::search(int data)
 {
@@ -199,7 +207,7 @@ return 0;
 
 
 }
-int Array::min()
+int Array::minimum()
 {
 
 	int index=1;
@@ -213,7 +221,7 @@ int Array::min()
 	
 
 }
-int Array::max()
+int Array::maximum()
 {
 
 	int index=1;
@@ -241,24 +249,24 @@ int main()
 	BST *a;
 	Array b;
 	a=&b;
-	a->add(5);
-	a->add(2);
+	a->add(7);
 	a->add(3);
-	a->add(34);
+	a->add(5);
+	a->add(4);
 	
 	
 
 
 	
-	a->add(8);
+	a->add(6);
 	a->add(50);
 	a->add(45);
-a->add(6);
+a->add(43);
 
 
-a->add(1);
-	cout<<"Min is "<<a->min()<<endl;
-	cout<<"Max is "<<a->max()<<endl;
+a->add(39);
+	cout<<"minimum is "<<a->minimum()<<endl;
+	cout<<"maximum is "<<a->maximum()<<endl;
 	
 	if(a->search(1001))
 	{
@@ -286,20 +294,21 @@ a->add(1);
 
 
 	cout<<"Preorder"<<endl;
-	a->preorder_traversal();
+	a->preordertraversal();
 	
 	
 	
 	cout<<"Inorder"<<endl;
-	a->inorder_traversal();
+	a->inordertraversal();
 	cout<<" "<<endl;
 
 	b.display();
 	
-	b.Delete(5);
+	b.deleteitem(3);
 	cout<<"After opt"<<endl;
 	b.display();
-	b.preorder_traversal();
+	cout<<""<<endl;
+	a->preordertraversal();
 
 	return 0;}
 
